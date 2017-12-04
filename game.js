@@ -36,7 +36,7 @@ function load (fileName) {
       let s = ''
       row.forEach((_, x) => {
         if (isBunny(x, y)) s += 'B'
-        else if (isCarrot(x, y)) s += 'C'
+        else if (isCarrot(x, y)) s += ''
         else if (isWall(x, y)) s += '|'
         else s += ' '
       })
