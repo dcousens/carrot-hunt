@@ -23,6 +23,7 @@ function load (fileName) {
   function isWall (x, y) { return walls[`${x}:${y}`] }
 
   function move (x, y) {
+    y = -y
     if (isWall(bunny.x + x, bunny.y + y)) return
     bunny.x += x
     bunny.y += y
