@@ -22,6 +22,7 @@ function load (fileName) {
   function isBunny (x, y) { return bunny.x === x && bunny.y === y }
   function isWall (x, y) { return walls[`${x}:${y}`] }
 
+  // TODO: no wall jumping
   function move (x, y) {
     y = -y
     if (isWall(bunny.x + x, bunny.y + y)) return
