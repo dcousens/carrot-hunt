@@ -24,7 +24,6 @@ function load (fileName) {
 
   // TODO: no wall jumping
   function move (x, y) {
-    y = -y
     if (isWall(bunny.x + x, bunny.y + y)) return
     bunny.x += x
     bunny.y += y
@@ -46,10 +45,11 @@ function load (fileName) {
     })
   }
 
+  bunny.move = move
   return {
     isCarrot,
     isWall,
-    bunny: { move },
+    bunny,
     print
   }
 }
