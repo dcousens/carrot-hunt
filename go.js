@@ -41,14 +41,14 @@ function isCarrotUp () {
 }
 
 function goBunny () {
-  if (isCarrotLeft() && canGoLeft()) return goLeft()
-  if (isCarrotRight() && canGoRight()) return goRight()
-  if (isCarrotUp() && canGoUp()) return goUp()
-  if (isCarrotDown() && canGoDown()) return goDown()
-  if (canGoLeft()) return goLeft()
-  if (canGoRight()) return goRight()
-  if (canGoUp()) return goUp()
-  if (canGoDown()) return goDown()
+  if (isCarrotLeft() && canGoLeft()) goLeft()
+  else if (isCarrotRight() && canGoRight()) goRight()
+  else if (isCarrotUp() && canGoUp()) goUp()
+  else if (isCarrotDown() && canGoDown()) goDown()
+  else if (canGoLeft()) goLeft()
+  else if (canGoRight()) goRight()
+  else if (canGoUp()) goUp()
+  else if (canGoDown()) goDown()
 }
 
 repl.context = Object.assign(repl.context, level, {
