@@ -40,15 +40,24 @@ function isCarrotUp () {
   return false
 }
 
+let went
 function goBunny () {
-  if (isCarrotLeft() && canGoLeft()) goLeft()
-  else if (isCarrotRight() && canGoRight()) goRight()
-  else if (isCarrotUp() && canGoUp()) goUp()
-  else if (isCarrotDown() && canGoDown()) goDown()
-  else if (canGoLeft()) goLeft()
-  else if (canGoRight()) goRight()
-  else if (canGoUp()) goUp()
-  else if (canGoDown()) goDown()
+  if (isCarrotLeft() && canGoLeft()) {
+    goLeft()
+    went = 'left'
+  } else if (isCarrotRight() && canGoRight()) {
+    goRight()
+    went = 'right'
+  } else if (isCarrotUp() && canGoUp()) {
+    goUp()
+    went = 'up'
+  } else if (isCarrotDown() && canGoDown()) {
+    goDown()
+    went = 'down'
+  } else if (canGoLeft() && went !== 'right') goLeft()
+  else if (canGoRight() && went !== 'left') goRight()
+  else if (canGoUp() && went !== 'down') goUp()
+  else if (canGoDown() && went !== 'up') goDown()
 }
 
 repl.context = Object.assign(repl.context, level, {
