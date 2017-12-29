@@ -3,10 +3,11 @@ let repl = require('repl').start('bunny> ')
 let level = loadLevel('level2.txt')
 let bunny = level.bunny
 
-function goDown () { bunny.move(0, 1); level.print() }
-function goLeft () { bunny.move(-1, 0); level.print() }
-function goRight () { bunny.move(1, 0); level.print() }
-function goUp () { bunny.move(0, -1); level.print() }
+let went
+function goDown () { bunny.move(0, 1); level.print(); went = 'down' }
+function goLeft () { bunny.move(-1, 0); level.print(); went = 'left' }
+function goRight () { bunny.move(1, 0); level.print(); went = 'right' }
+function goUp () { bunny.move(0, -1); level.print(); went = 'up' }
 function canGoDown () { return !level.isWall(bunny.x, bunny.y + 1) }
 function canGoLeft () { return !level.isWall(bunny.x - 1, bunny.y) }
 function canGoRight () { return !level.isWall(bunny.x + 1, bunny.y) }
@@ -40,21 +41,12 @@ function isCarrotUp () {
   return false
 }
 
-let went
 function goBunny () {
-  if (isCarrotLeft() && canGoLeft()) {
-    goLeft()
-    went = 'left'
-  } else if (isCarrotRight() && canGoRight()) {
-    goRight()
-    went = 'right'
-  } else if (isCarrotUp() && canGoUp()) {
-    goUp()
-    went = 'up'
-  } else if (isCarrotDown() && canGoDown()) {
-    goDown()
-    went = 'down'
-  } else if (canGoLeft() && went !== 'right') goLeft()
+  if (isCarrotLeft() && canGoLeft() && went !== 'right') goLeft()
+  else if (isCarrotRight() && canGoRight() && went !== 'left') goRight()
+  else if (isCarrotUp() && canGoUp() && went !== 'down') goUp()
+  else if (isCarrotDown() && canGoDown() && went !== 'up') goDown()
+  else if (canGoLeft() && went !== 'right') goLeft()
   else if (canGoRight() && went !== 'left') goRight()
   else if (canGoUp() && went !== 'down') goUp()
   else if (canGoDown() && went !== 'up') goDown()
